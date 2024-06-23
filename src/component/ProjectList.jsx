@@ -34,14 +34,14 @@ const ProjectList = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/v1/getproject')
+      .get('https://brand-liberty.onrender.com/api/v1/getproject')
       .then((response) => setProjects(response.data))
       .catch((error) => console.error('Error fetching projects:', error));
   }, []);
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/v1/deleteprojects/${id}`)
+      .delete(`https://brand-liberty.onrender.com/api/v1/deleteprojects/${id}`)
       .then(() => {
         setProjects(projects.filter((project) => project._id !== id));
       })
@@ -69,7 +69,7 @@ const ProjectList = () => {
     if (newProject._id) {
       // Update existing project
       axios
-        .put(`http://localhost:5000/api/v1/updateprojects/${newProject._id}`, newProject)
+        .put(`https://brand-liberty.onrender.com/api/v1/updateprojects/${newProject._id}`, newProject)
         .then((response) => {
           setProjects(projects.map((project) => (project._id === newProject._id ? response.data : project)));
           setModalIsOpen(false);
@@ -85,7 +85,7 @@ const ProjectList = () => {
     } else {
       // Add new project
       axios
-        .post('http://localhost:5000/api/v1/addproject', newProject)
+        .post('https://brand-liberty.onrender.com/api/v1/addproject', newProject)
         .then((response) => {
           setProjects([...projects, response.data]);
           setModalIsOpen(false);
